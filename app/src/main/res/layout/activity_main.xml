@@ -29,4 +29,61 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonPlay"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonIniciarCrono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="27dp"
+        android:text="Start Crono"
+        app:layout_constraintEnd_toStartOf="@+id/buttonStopCrono"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStop" />
+
+    <Button
+        android:id="@+id/buttonStopCrono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="13dp"
+        android:text="StopCrono"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonIniciarCrono"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStop" />
+
+    <TextView
+        android:id="@+id/textViewCrono"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:background="#000000"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonStopCrono" />
+
+    <Button
+        android:id="@+id/buttonComprobarWifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="33dp"
+        android:text="Start Comprobar Wifi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCrono" />
+
+    <Button
+        android:id="@+id/buttonPararWifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="2dp"
+        android:text="Stop Comprobar Wifi"
+        app:layout_constraintEnd_toEndOf="@+id/buttonComprobarWifi"
+        app:layout_constraintTop_toBottomOf="@+id/buttonComprobarWifi" />
 </androidx.constraintlayout.widget.ConstraintLayout>

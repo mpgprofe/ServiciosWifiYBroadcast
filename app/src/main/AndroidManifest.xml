@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.servicioswifiybroadcast">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,9 +11,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ServiciosWifiYBroadcast">
         <service
-            android:name=".ServicioMusica"
+            android:name=".EstadoWifi"
             android:enabled="true"
             android:exported="true"></service>
+        <service
+            android:name=".ServicioCrono"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".ServicioMusica"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

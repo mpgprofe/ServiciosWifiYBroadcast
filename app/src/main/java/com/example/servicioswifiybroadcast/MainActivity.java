@@ -2,16 +2,22 @@ package com.example.servicioswifiybroadcast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 Button playMusica, stopMusica, startCrono, stopCrono,startComprobarWifi, stopComprobarWifi;
 private TextView textView;
-
+OnBateriaCambia onBateriaCambia = new OnBateriaCambia();
 void actualizarCronometro(String cadena){
     textView.setText(cadena);
 }
@@ -20,6 +26,13 @@ void actualizarCronometro(String cadena){
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        IntentFilter intentFilter = new IntentFilter("android.intent.action.ACTION_POWER_CONNECTED");
+        intentFilter.addAction("android.intent.action.ACTION_POWER_DISCONNECTED");
+        intentFilter.addAction("android.intent.action.BATTERY_LOW");
+        intentFilter.addAction("android.net.wifi.STATE_CHANGE");
+
+        getBaseContext().registerReceiver(onBateriaCambia,intentFilter);
+
 
         playMusica = findViewById(R.id.buttonPlay);
         stopMusica = findViewById(R.id.buttonStop);
@@ -77,5 +90,26 @@ void actualizarCronometro(String cadena){
             }
         });
 
+    }
+
+
+
+    class OnBateriaCambia extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (intent.getAction().equals(Intent.ACTION_POWER_CONNECTED)){
+                Log.i("ESTADO", "Cable conectado");
+
+            }else if (intent.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)){
+                Log.i("ESTADO", "Cable desconectado");
+                Toast.makeText(MainActivity.this, "Cable desconectado", Toast.LENGTH_SHORT).show();
+            }else if(intent.getAction().equals(Intent.ACTION_BATTERY_LOW)){
+                Log.i("ESTADO", "Batería baja");
+            }else if(intent.getAction().equals("android.net.wifi.STATE_CHANGE")){
+                Log.i("ESTADO", "Cambio wifi");
+            }
+        }
     }
 }
